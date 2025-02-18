@@ -5,7 +5,6 @@ import 'package:movies/core/utility/theme_data/custom_theme/elevated_button_them
 import 'package:movies/core/utility/theme_data/custom_theme/outline_button_theme.dart';
 import 'package:movies/core/utility/theme_data/custom_theme/text_form_field_theme.dart';
 
-import 'custom_theme/text_theme.dart';
 
 class AppTheme {
   AppTheme._();

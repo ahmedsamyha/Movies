@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:movies/core/utility/constants/colors.dart';
 
 class KStyles {
-  static final inter32w500White = GoogleFonts.inter(
+  static final inter36w500White = GoogleFonts.inter(
       color: AppColors.textWhiteColor,
       fontWeight: FontWeight.w500,
       fontSize: 36);
@@ -34,6 +34,10 @@ class KStyles {
   static final roboto14w400Primary = GoogleFonts.roboto(
       color: AppColors.textPrimaryColor,
       fontWeight: FontWeight.w400,
+      fontSize: 14);
+  static final roboto14w600Primary = GoogleFonts.roboto(
+      color: AppColors.textPrimaryColor,
+      fontWeight: FontWeight.w600,
       fontSize: 14);
   static final roboto20w400Black = GoogleFonts.roboto(
       color: AppColors.textBlackColor,

@@ -12,7 +12,7 @@ class CustomOutlineButtonTheme{
     style:  OutlinedButton.styleFrom(
       elevation: 0,
       foregroundColor: AppColors.kPrimaryColor,
-      side: const BorderSide(color: AppColors.kPrimaryColor),
+      side: const BorderSide(color: AppColors.kPrimaryColor,width: 2),
       textStyle: KStyles.inter20w600primary,
       padding: const EdgeInsets.symmetric(vertical: 16 , horizontal: 20),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16))

@@ -11,7 +11,7 @@ class CustomElevatedButtonTheme{
     style: ElevatedButton.styleFrom(
       elevation: 0,
       foregroundColor: AppColors.iconColor,
-      backgroundColor: AppColors.grayBackground,
+      backgroundColor: AppColors.kPrimaryColor,
      /* disabledForegroundColor: Colors.grey,
       disabledBackgroundColor: Colors.grey,*/
      // side: const BorderSide(color: AppColors.primary),
