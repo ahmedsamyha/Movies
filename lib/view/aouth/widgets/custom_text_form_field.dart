@@ -26,9 +26,13 @@ class CustomTextFormField extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return TextFormField(
+
       style: KStyles.roboto16w400White,
       decoration: InputDecoration(
-        border: OutlineInputBorder(),
+        fillColor: Color(0xFF282A28),
+        filled: true,
+        border: OutlineInputBorder(
+        ),
         prefixIcon: prefixIcon != null ? Icon(prefixIcon) : null,
         suffixIcon: Icon(suffixIcon),
         labelText: label,

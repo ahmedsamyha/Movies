@@ -5,6 +5,7 @@ import 'package:flutter_svg/svg.dart';
 
 import 'package:movies/core/utility/constants/colors.dart';
 import 'package:movies/core/utility/constants/images.dart';
+import 'package:movies/view/aouth/views/forget_password_view.dart';
 import 'package:movies/view/aouth/views/register_view.dart';
 import 'package:movies/view/aouth/widgets/custom_text_form_field.dart';
 import 'package:movies/view/movies/views/app_main.dart';
@@ -70,7 +71,10 @@ class _LoginViewState extends State<LoginView> {
               Align(
                 alignment: Alignment.centerRight,
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => ForgetPasswordView()),);
+                  },
                   child: Text("forget_password".tr(),
                       style: KStyles.roboto14w400Primary),
                 ),
