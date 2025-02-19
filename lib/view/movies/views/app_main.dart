@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:movies/core/utility/constants/colors.dart';
 import 'package:movies/core/utility/constants/images.dart';
 import 'package:movies/view/movies/views/explore_movies_view.dart';
 import 'package:movies/view/movies/views/home_view.dart';
 import 'package:movies/view/movies/views/profile_view.dart';
 import 'package:movies/view/movies/views/search_view.dart';
+import 'package:movies/view_model/app_main_cubit/app_main_cubit.dart';
 
 class AppMainView extends StatefulWidget {
   const AppMainView({super.key});
@@ -16,29 +19,17 @@ class AppMainView extends StatefulWidget {
 }
 
 class _AppMainViewState extends State<AppMainView> {
-  int currentIndex = 0;
-  List<Widget> screens = [
-    HomeView(),
-    SearchView(),
-    ExploreMoviesView(),
-    ProfileView(),
-  ];
 
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
+    var appCubit = BlocProvider.of<AppMainCubit>(context);
     return Scaffold(
-        appBar: PreferredSize(
-          preferredSize: Size.fromHeight(0),
-          child: AppBar(
-            systemOverlayStyle:
-            SystemUiOverlayStyle(statusBarColor: AppColors.darkBackground),
-          ),
-        ),
+
         body: Stack(
             children: [
-              screens[currentIndex],
+              appCubit.screens[appCubit.currentIndex],
               Positioned(
                 bottom: 8,
                 left: 8,
@@ -54,25 +45,25 @@ class _AppMainViewState extends State<AppMainView> {
                         selectedItemColor: AppColors.kPrimaryColor,
                         unselectedItemColor: AppColors.textWhiteColor,
                         type: BottomNavigationBarType.fixed,
-                        currentIndex: currentIndex,
+                        currentIndex: appCubit.currentIndex,
                         showUnselectedLabels: false,
                         showSelectedLabels: false,
                         onTap: (value) {
-                          currentIndex = value;
+                          appCubit.currentIndex = value;
                           setState(() {});
                         },
                         items: [
                           BottomNavigationBarItem(
-                              icon: ImageIcon(AssetImage(KImages.homeIcon)),
+                              icon: Icon(Iconsax.home_15),
                               label: ''),
                           BottomNavigationBarItem(
-                              icon: ImageIcon(AssetImage(KImages.searchIcon)),
+                              icon:  Icon(Iconsax.search_normal_15),
                               label: ''),
                           BottomNavigationBarItem(
-                              icon: ImageIcon(AssetImage(KImages.exploreIcon)),
+                              icon: Icon(Icons.explore),
                               label: ''),
                           BottomNavigationBarItem(
-                              icon: ImageIcon(AssetImage(KImages.profileIcon)),
+                              icon:  Icon(Iconsax.profile_circle),
                               label: ''),
                         ],
                       ),

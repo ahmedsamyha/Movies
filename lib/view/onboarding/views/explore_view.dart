@@ -12,6 +12,7 @@ class ExploreView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
+
           decoration: BoxDecoration(
               image: DecorationImage(
                   image: AssetImage(KImages.explore), fit: BoxFit.fill)),

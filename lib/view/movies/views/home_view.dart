@@ -1,64 +1,53 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:movies/catgory/catgory_scroll_item.dart';
+import 'package:movies/view/movies/widgets/catgory_scroll_item.dart';
 import 'package:movies/core/utility/constants/colors.dart';
 import 'package:movies/core/utility/constants/images.dart';
 import 'package:movies/core/utility/theme_data/custom_theme/text_theme.dart';
 
 class HomeView extends StatelessWidget {
   HomeView({super.key});
-
-  List<String> list = [
-    KImages.boarding1,
-    KImages.boarding2,
-    KImages.boarding3,
-    KImages.boarding4,
-    KImages.boarding5,
+  List<String> actionList = [
+    KImages.movie1971,
+    KImages.movieCaptain,
+    KImages.movieBaby,
+    KImages.movie1971,
+    KImages.movieCaptain,
+    KImages.movieBaby,
   ];
-
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
-    return Column(
-      children: [
-        SizedBox(
-          height: height * .75,
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
+    return SingleChildScrollView(
+      child: Column(children: [
+        Container(
+          height: height * .67,
+          width: double.infinity,
+          decoration: BoxDecoration(
+              image: DecorationImage(
+            image: AssetImage(
+              KImages.movie1971,
+            ),
+            fit: BoxFit.fill,
+          )),
+          child: Stack(
             children: [
-              Expanded(
-                child: Stack(children: [
-                  Image.asset(
-                    KImages.boarding5,
-                    width: double.infinity,
-                    fit: BoxFit.fill,
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                            begin: Alignment.bottomCenter,
-                            end: Alignment.topCenter,
-                            colors: [Colors.black, Colors.black12])),
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Image.asset(KImages.availabel),
-                      SizedBox(
-                        height: 300,
-                      ),
-                      Image.asset(KImages.watch),
-                    ],
-                  ),
-                  CatgoryScrollItem(
-                    list: list,
-                    hight: height * .6,
-                    width: width * .4,
-                  )
-                ]),
+              Image.asset(
+                KImages.gradiantColors,
+                height: height * .7,
               ),
+              Positioned(
+                  top: 38,
+                  left: width * .15,
+                  child: Image.asset(KImages.availabel)),
+              CategoryScrollItem(),
+              Positioned(
+                  bottom: 0,
+                  left: width * .01,
+                  right: width * .01,
+                  child: Image.asset(KImages.watch)),
             ],
           ),
         ),
@@ -66,148 +55,80 @@ class HomeView extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Row(
             children: [
-              Text('Action',
-              style: KStyles.roboto14w400White,),
+              Text(
+                "action".tr(),
+                style: KStyles.roboto20w400White,
+              ),
               Spacer(
                 flex: 1,
               ),
-              Text('See More',
-              style: KStyles.roboto14w400Primary,),
-              Icon(Icons.arrow_forward,
-              color: AppColors.kPrimaryColor,)
+              TextButton(
+                  onPressed: () {},
+                  child: Text(
+                    "see_more".tr(),
+                    style: KStyles.roboto16w400Primary,
+                  )),
+              Icon(
+                Icons.arrow_forward,
+                color: AppColors.kPrimaryColor,
+              ),
             ],
           ),
         ),
-        SizedBox(height: 6,),
-        Expanded(
-          child: ListView.separated(
-            separatorBuilder: (context, index) {
-              return SizedBox(
-                width: 30,
-              );
-            },
-            itemCount: list.length,
-            scrollDirection: Axis.horizontal,
-            itemBuilder: (context, index) {
-              return SizedBox(
-                width: width * .3,
-                child: ClipRRect(
-                    borderRadius: BorderRadius.circular(24),
-                    child: Image.asset(
-                      list[index],
-                      fit: BoxFit.cover,
-                    )),
-              );
-            },
+        SizedBox(
+          height: height * .28,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: ListView.separated(
+              physics: BouncingScrollPhysics(),
+              separatorBuilder: (context, index) {
+                return SizedBox(
+                  width: 16,
+                );
+              },
+              itemCount: actionList.length,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, index) {
+                return Stack(
+                  children: [
+
+                    ClipRRect(
+                        borderRadius: BorderRadius.circular(24),
+                        child: Image.asset(
+                          actionList[index],
+                          fit: BoxFit.fill,
+                          width: width * .35,
+                        )),
+                    Container(
+                      padding:
+                      EdgeInsets.symmetric(horizontal: 3, vertical: 1),
+                      margin:
+                      EdgeInsets.symmetric(horizontal: 9, vertical: 11),
+                      decoration: BoxDecoration(
+                          color: Color(0xFF282A28).withValues(alpha: .8),
+                          borderRadius: BorderRadius.circular(10)),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            '7.7',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          Icon(
+                            Icons.star_rounded,
+                            color: AppColors.kPrimaryColor,
+                          )
+                        ],
+                      ),
+                    ),
+                  ],
+                );
+              },
+            ),
           ),
         )
-      ],
+      ]),
     );
   }
 }
-
-/*Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(top: 120),
-          child: CarouselSlider(
-            options: CarouselOptions(
-              height: 320,
-              aspectRatio: 2.0,
-              viewportFraction: .4,
-              initialPage: 0,
-              disableCenter: true,
-              enableInfiniteScroll: true,
-              enlargeCenterPage: true,
-              enlargeFactor: 0.4,
-              scrollDirection: Axis.horizontal,
-            ),
-            items: list.map((i) {
-              return Builder(
-                builder: (BuildContext context) {
-                  return Container(
-                    width: width * .4,
-                    child: ClipRRect(
-                        borderRadius:
-                        BorderRadius.all(Radius.circular(24)),
-                        child: Image.asset(
-                          i,
-                          fit: BoxFit.cover,
-                        )),
-                  );
-                },
-              );
-            }).toList(),
-          ),
-        ),
-      ],
-    );*/
-
-/*Expanded(
-          child: ListView.separated(
-            separatorBuilder:(context,index){
-              return SizedBox(width: 24,);
-            },
-            itemCount: list.length,
-            scrollDirection: Axis.horizontal,
-            itemBuilder: (context,index){
-              return SizedBox(
-
-                width: width*.4,
-                child: ClipRRect(
-                    borderRadius: BorderRadius.circular(24),
-                    child: Image.asset(list[index],
-                      fit: BoxFit.cover,)
-                ),
-              );
-            },
-          ),
-        )*/
-/* Padding(
-                padding: const EdgeInsets.only(bottom: 140),
-                child: SizedBox(
-                  height: 300,
-                  child: ListView.separated(
-                    separatorBuilder:(context,index){
-                      return SizedBox(width: 24,);
-                    },
-                    itemCount: list.length,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context,index){
-                      return SizedBox(
-
-                        width: width*.4,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(24),
-                          child: Image.asset(list[index],
-                          fit: BoxFit.cover,)
-                        ),
-                      );
-                    },
-                  ),
-                ),
-              )*/
-/*  CarouselSlider(
-  options: CarouselOptions(
-    height: 390,
-    aspectRatio: 2.0,
-    viewportFraction: 0.4,
-    initialPage: 0,
-    enableInfiniteScroll: true,
-    enlargeCenterPage: true,
-    enlargeFactor: 0.4,
-    scrollDirection: Axis.horizontal,
-  ),
-  items: list.map((imagePath) {
-    return Builder(
-      builder: (BuildContext context) {
-        return ClipRRect(
-          borderRadius: BorderRadius.circular(24), // جعل الحواف منحنية للجميع
-          child: Image.asset(imagePath, fit: BoxFit.cover),
-        );
-      },
-    );
-  }).toList(),
-)
-*/

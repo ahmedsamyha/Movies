@@ -42,5 +42,11 @@ abstract class KImages {
 
   static final String watch= "assets/images/Watch Now.png" ;
   static final String availabel= "assets/images/Available Now.png" ;
+  static final String gradiantColors= "assets/images/grediant.png" ;
+
+
+  static final String movie1971= "assets/images/movie1971.jpeg" ;
+  static final String movieCaptain= "assets/images/captain.jpeg" ;
+  static final String movieBaby= "assets/images/baby.jpeg" ;
 
 }
