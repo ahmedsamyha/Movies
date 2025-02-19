@@ -40,4 +40,7 @@ abstract class KImages {
   static final String boarding4 = 'assets/images/boarding4.png';
   static final String boarding5 = 'assets/images/boarding5.png';
 
+  static final String watch= "assets/images/Watch Now.png" ;
+  static final String availabel= "assets/images/Available Now.png" ;
+
 }
