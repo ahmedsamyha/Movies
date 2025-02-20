@@ -18,69 +18,65 @@ final  searching=TextEditingController();
     var width = MediaQuery.of(context).size.width;
     return Padding(
       padding: const EdgeInsets.only(top: 21,left: 16,right: 16),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-
-        children: [
-          CustomTextFormField(
-              prefixIcon: Icons.search_sharp,
-              label: "search".tr(),
-              controller: searching,
-              validator: (value) {},
-              onChanged: (value) {},
-              keyboardType: TextInputType.visiblePassword,
-              obscureText: true),
-      list.isEmpty?Column(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Image.asset('assets/images/searchIsEmpty.png'),
-        ],
-      ):Expanded(
-        child: GridView.builder(
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              childAspectRatio: 0.65,
-              crossAxisSpacing: 16,
-              mainAxisSpacing: 8),
-          itemCount: list.length,
-          itemBuilder: (context,index){
-            return Stack(
-              children: [
-                ClipRRect(
-                    borderRadius: BorderRadius.all(Radius.circular(24)),
-                    child: Image.asset(list[index],
-                      fit: BoxFit.fill,
-                    )),
-                Container(
-                  padding:
-                  EdgeInsets.symmetric(horizontal: 3, vertical: 1),
-                  margin:
-                  EdgeInsets.symmetric(horizontal: 9, vertical: 11),
-                  decoration: BoxDecoration(
-                      color: Color(0xFF282A28).withValues(alpha: .8),
-                      borderRadius: BorderRadius.circular(10)),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        '7.7',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      Icon(
-                        Icons.star_rounded,
-                        color: AppColors.kPrimaryColor,
-                      )
-                    ],
-                  ),
-                )
-              ],
-            );
-          },
+      child: SafeArea(
+        child: Column(
+          children: [
+            CustomTextFormField(
+                prefixIcon: Icons.search_sharp,
+                label: "search".tr(),
+                controller: searching,
+                validator: (value) {},
+                keyboardType: TextInputType.text,
+                obscureText: false),
+        list.isEmpty?Padding(
+          padding:  EdgeInsets.only(top:height*.28),
+          child: Image.asset(KImages.empty),
+        ):Expanded(
+          child: GridView.builder(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                childAspectRatio: 0.65,
+                crossAxisSpacing: 16,
+                mainAxisSpacing: 8),
+            itemCount: list.length,
+            itemBuilder: (context,index){
+              return Stack(
+                children: [
+                  ClipRRect(
+                      borderRadius: BorderRadius.all(Radius.circular(24)),
+                      child: Image.asset(list[index],
+                        fit: BoxFit.fill,
+                      )),
+                  Container(
+                    padding:
+                    EdgeInsets.symmetric(horizontal: 3, vertical: 1),
+                    margin:
+                    EdgeInsets.symmetric(horizontal: 9, vertical: 11),
+                    decoration: BoxDecoration(
+                        color: Color(0xFF282A28).withValues(alpha: .8),
+                        borderRadius: BorderRadius.circular(10)),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          '7.7',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        Icon(
+                          Icons.star_rounded,
+                          color: AppColors.kPrimaryColor,
+                        )
+                      ],
+                    ),
+                  )
+                ],
+              );
+            },
+          ),
         ),
-      ),
-        ],
+          ],
+        ),
       ),
     );
   }

@@ -26,7 +26,7 @@ class _RegisterViewState extends State<RegisterView> {
   final nameController = TextEditingController();
   final phoneController = TextEditingController();
   final formKey = GlobalKey<FormState>();
-  var avatarIndex=0;
+  var avatarIndex = 0;
   final List<String> avatars = [
     KImages.avatar1,
     KImages.avatar2,
@@ -46,7 +46,12 @@ class _RegisterViewState extends State<RegisterView> {
 
     return BlocConsumer<RegisterCubit, RegisterStates>(
       listener: (context, state) {
-        if (state is RegisterSuccessState) {
+        if (state is RegisterLoadingState) {
+          Center(
+              child: CircularProgressIndicator(
+            color: AppColors.kPrimaryColor,
+          ));
+        } else if (state is RegisterSuccessState) {
           Navigator.push(
               context, MaterialPageRoute(builder: (context) => LoginView()));
         } else if (state is RegisterFailureState) {
@@ -77,20 +82,9 @@ class _RegisterViewState extends State<RegisterView> {
               btnOkOnPress: () {},
             ).show();
           } else if (state.errorMessage ==
-              '{message: [Password is must be strong, password must be longer than or equal to 8 characters, confirm password must be strong, confirmPassword must be longer than or equal to 8 characters], error: Bad Request, statusCode: 400}'||state.errorMessage =='{message: [Password is must be strong, confirm password must be strong], error: Bad Request, statusCode: 400}') {
-            AwesomeDialog(
-              btnCancelColor: const Color(0xfff44369),
-              btnOkColor: AppColors.kPrimaryColor,
-              dialogBackgroundColor: AppColors.darkBackground,
-              context: context,
-              dialogType: DialogType.error,
-              animType: AnimType.topSlide,
-              title: 'Error',
-              desc: "Password must be at least 8 characters and include a letter, number, and symbol."     ,
-              btnOkOnPress: () {},
-            ).show();
-          }else if (state.errorMessage ==
-              '{message: [Phone invaild], error: Bad Request, statusCode: 400}') {
+                  '{message: [Password is must be strong, password must be longer than or equal to 8 characters, confirm password must be strong, confirmPassword must be longer than or equal to 8 characters], error: Bad Request, statusCode: 400}' ||
+              state.errorMessage ==
+                  '{message: [Password is must be strong, confirm password must be strong], error: Bad Request, statusCode: 400}') {
             AwesomeDialog(
               btnCancelColor: const Color(0xfff44369),
               btnOkColor: AppColors.kPrimaryColor,
@@ -100,25 +94,37 @@ class _RegisterViewState extends State<RegisterView> {
               animType: AnimType.topSlide,
               title: 'Error',
               desc:
-              'Phone invalid',
+                  "Password must be at least 8 characters and include a letter, number, and symbol.",
               btnOkOnPress: () {},
             ).show();
-        }else {
-          AwesomeDialog(
-            btnCancelColor: const Color(0xfff44369),
-            btnOkColor: AppColors.kPrimaryColor,
-            dialogBackgroundColor: AppColors.darkBackground,
-            context: context,
-            dialogType: DialogType.error,
-            animType: AnimType.topSlide,
-            title: 'Error',
-            desc:
-            'UnExpected Error',
-            btnOkOnPress: () {},
-          ).show();
+          } else if (state.errorMessage ==
+              '{message: [Phone invaild], error: Bad Request, statusCode: 400}') {
+            AwesomeDialog(
+              btnCancelColor: const Color(0xfff44369),
+              btnOkColor: AppColors.kPrimaryColor,
+              dialogBackgroundColor: AppColors.darkBackground,
+              context: context,
+              dialogType: DialogType.error,
+              animType: AnimType.topSlide,
+              title: 'Error',
+              desc: 'Phone invalid',
+              btnOkOnPress: () {},
+            ).show();
+          } else {
+            AwesomeDialog(
+              btnCancelColor: const Color(0xfff44369),
+              btnOkColor: AppColors.kPrimaryColor,
+              dialogBackgroundColor: AppColors.darkBackground,
+              context: context,
+              dialogType: DialogType.error,
+              animType: AnimType.topSlide,
+              title: 'Error',
+              desc: 'UnExpected Error',
+              btnOkOnPress: () {},
+            ).show();
+          }
         }
-      }
-        },
+      },
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
@@ -137,7 +143,7 @@ class _RegisterViewState extends State<RegisterView> {
                       height: height * .19,
                       child: Swiper(
                         itemBuilder: (context, index) {
-                          avatarIndex = index+1;
+                          avatarIndex = index + 1;
                           return CircleAvatar(
                             backgroundColor: AppColors.darkBackground,
                             child: Image.asset(

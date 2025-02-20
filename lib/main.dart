@@ -6,6 +6,8 @@ import 'package:movies/view/aouth/views/login_view.dart';
 import 'package:movies/view/splash/splash_view.dart';
 import 'package:movies/view_model/app_main_cubit/app_main_cubit.dart';
 import 'package:movies/view_model/app_main_cubit/app_main_state.dart';
+import 'package:movies/view_model/login_cubit/login_cubit.dart';
+import 'package:movies/view_model/login_cubit/login_state.dart';
 import 'package:movies/view_model/register_cubit/register_cubit.dart';
 import 'package:movies/view_model/register_cubit/register_state.dart';
 import 'core/utility/helper/network/dio_heper.dart';
@@ -36,8 +38,8 @@ class MoviesApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(
-          create: (context) => RegisterCubit(RegisterInitialState(), ApiService(dio: Dio())),),
+        BlocProvider(create: (context) => RegisterCubit(RegisterInitialState(), ApiService(dio: Dio())),),
+        BlocProvider(create: (context) => LoginCubit(LoginInitialState(), ApiService(dio: Dio())),),
         BlocProvider(create: (context) => AppMainCubit(AppMainInitialState())),
       ],
       child: MaterialApp(
