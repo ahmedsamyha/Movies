@@ -9,7 +9,7 @@ class CustomTextFormField extends StatelessWidget {
        this.hint,
       required this.controller,
       required this.validator,
-      required this.onChanged,
+       this.onChanged,
       required this.keyboardType,
       this.suffixIcon,
          this.label, required this.obscureText});
