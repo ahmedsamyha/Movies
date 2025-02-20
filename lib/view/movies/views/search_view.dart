@@ -2,18 +2,14 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:movies/core/utility/constants/colors.dart';
 import 'package:movies/core/utility/constants/images.dart';
-
+import 'package:movies/core/utility/theme_data/custom_theme/text_theme.dart';
 import 'package:movies/view/aouth/widgets/custom_text_form_field.dart';
-import 'package:movies/view/movies/widgets/grid_view_item.dart';
-import 'package:movies/view/movies/widgets/photo_stars_item.dart';
 
 class SearchView extends StatelessWidget {
    SearchView({super.key});
 
    List<String> list = [
-KImages.movie1971,
-KImages.movieCaptain,
-KImages.movie1971,
+
    ];
 final  searching=TextEditingController();
   @override
@@ -40,7 +36,50 @@ final  searching=TextEditingController();
         children: [
           Image.asset('assets/images/searchIsEmpty.png'),
         ],
-      ):GridViewItem(list: list)
+      ):Expanded(
+        child: GridView.builder(
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              childAspectRatio: 0.65,
+              crossAxisSpacing: 16,
+              mainAxisSpacing: 8),
+          itemCount: list.length,
+          itemBuilder: (context,index){
+            return Stack(
+              children: [
+                ClipRRect(
+                    borderRadius: BorderRadius.all(Radius.circular(24)),
+                    child: Image.asset(list[index],
+                      fit: BoxFit.fill,
+                    )),
+                Container(
+                  padding:
+                  EdgeInsets.symmetric(horizontal: 3, vertical: 1),
+                  margin:
+                  EdgeInsets.symmetric(horizontal: 9, vertical: 11),
+                  decoration: BoxDecoration(
+                      color: Color(0xFF282A28).withValues(alpha: .8),
+                      borderRadius: BorderRadius.circular(10)),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        '7.7',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      Icon(
+                        Icons.star_rounded,
+                        color: AppColors.kPrimaryColor,
+                      )
+                    ],
+                  ),
+                )
+              ],
+            );
+          },
+        ),
+      ),
         ],
       ),
     );
