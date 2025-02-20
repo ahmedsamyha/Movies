@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 
 class ApiService {
-  final _baseUrl = '';
+  final _baseUrl = 'https://route-movie-apis.vercel.app/';
   final Dio dio;
 
   ApiService({required this.dio});
@@ -20,7 +20,6 @@ class ApiService {
 
   Future<Map<String, dynamic>> post({
     required String endPoint,
-    required String lang,
     required String token,
     required dynamic data,
   }) async {
@@ -29,7 +28,6 @@ class ApiService {
       data: data,
       options: Options(
         headers: {
-          'lang': lang,
           'Content-Type': 'application/json',
           'Authorization': token,
         },
