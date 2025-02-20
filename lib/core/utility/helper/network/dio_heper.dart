@@ -9,8 +9,7 @@ class ApiService {
       {required String endPoint,
       required String lang,
       required String token}) async {
-    var response = await dio.get('$_baseUrl$endPoint',
-        options: Options(headers: {
+    var response = await dio.get('$_baseUrl$endPoint',options: Options(headers: {
           'lang': lang,
           'Content-Type': 'application/json',
           'Authorization': token ?? '',

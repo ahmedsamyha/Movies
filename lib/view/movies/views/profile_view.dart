@@ -8,9 +8,13 @@ class ProfileView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Center(child: Text('Profile View' , style: KStyles.roboto20w700Primary,))
-      ],
+        Row(
+          children: [
+            Image.asset('assets/images/avatar2.png'),
+          ],
+        )],
     );
   }
 }
