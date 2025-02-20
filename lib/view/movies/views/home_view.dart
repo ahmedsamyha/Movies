@@ -36,6 +36,8 @@ class HomeView extends StatelessWidget {
             children: [
               Image.asset(
                 KImages.gradiantColors,
+                fit: BoxFit.fill,
+                width: double.infinity,
                 height: height * .7,
               ),
               Positioned(
