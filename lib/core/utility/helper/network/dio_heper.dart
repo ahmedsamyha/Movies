@@ -2,17 +2,15 @@ import 'package:dio/dio.dart';
 
 class ApiService {
   final _baseUrl = 'https://route-movie-apis.vercel.app/';
-  final _moviesBaseUrl = 'https://route-movie-apis.vercel.app/';
+  final _moviesBaseUrl = 'https://yts.mx/api/v2/';
   final Dio dio;
 
   ApiService({required this.dio});
   Future<Map<String, dynamic>> get(
       {required String endPoint,
-      required String lang,
       required String token
       }) async {
     var response = await dio.get('$_moviesBaseUrl$endPoint',options: Options(headers: {
-          'lang': lang,
           'Content-Type': 'application/json',
           'Authorization': token ?? '',
         }));
