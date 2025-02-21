@@ -41,6 +41,23 @@
   "reset_password": "إعادة تعيين كلمة المرور",
   "delete_account": "حذف الحساب",
   "update_data": "تحديث البيانات",
-  "or":"أو"
+  "or":"أو",
+  "error": "خطأ",
+  "user_not_found": "المستخدم غير موجود، يرجى التحقق من البريد الإلكتروني وكلمة المرور",
+  "email_required": "البريد الإلكتروني مطلوب",
+  "user_already_exist": "المستخدم موجود بالفعل",
+  "Password_must_be_at_least8": "يجب أن تكون كلمة المرور 8 أحرف على الأقل وتحتوي على حرف ورقم ورمز.",
+  "phone_invalid": "رقم الهاتف غير صالح",
+  "unExpected_error": "خطأ غير متوقع",
+  "name_required": "الاسم مطلوب",
+  "name_must_be": "يجب أن يكون الاسم 3 أحرف على الأقل",
+  "enter_valid_email": "يرجى إدخال بريد إلكتروني صالح",
+  "Password_is_week": "كلمة المرور ضعيفة جدًا",
+  "confirm_required": "تأكيد كلمة المرور مطلوب",
+  "Passwords_do_not_match": "كلمتا المرور غير متطابقتين",
+  "Phone_required": "رقم الهاتف مطلوب",
+  "password_required": "كلمة المرور مطلوبه"
+
 }
+
 

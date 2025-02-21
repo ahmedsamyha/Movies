@@ -64,21 +64,8 @@ class _RegisterViewState extends State<RegisterView> {
               context: context,
               dialogType: DialogType.error,
               animType: AnimType.topSlide,
-              title: 'Error',
-              desc: ' User already exist',
-              btnOkOnPress: () {},
-            ).show();
-          } else if (state.errorMessage ==
-              '{statusCode: 400, message: User already exist}') {
-            AwesomeDialog(
-              btnCancelColor: const Color(0xfff44369),
-              btnOkColor: AppColors.kPrimaryColor,
-              dialogBackgroundColor: AppColors.darkBackground,
-              context: context,
-              dialogType: DialogType.error,
-              animType: AnimType.topSlide,
-              title: 'Error',
-              desc: 'User already exist',
+              title: "error".tr(),
+              desc: "user_already_exist".tr(),
               btnOkOnPress: () {},
             ).show();
           } else if (state.errorMessage ==
@@ -92,9 +79,8 @@ class _RegisterViewState extends State<RegisterView> {
               context: context,
               dialogType: DialogType.error,
               animType: AnimType.topSlide,
-              title: 'Error',
-              desc:
-                  "Password must be at least 8 characters and include a letter, number, and symbol.",
+              title: "error".tr(),
+              desc: "Password_must_be_at_least8".tr(),
               btnOkOnPress: () {},
             ).show();
           } else if (state.errorMessage ==
@@ -106,8 +92,8 @@ class _RegisterViewState extends State<RegisterView> {
               context: context,
               dialogType: DialogType.error,
               animType: AnimType.topSlide,
-              title: 'Error',
-              desc: 'Phone invalid',
+              title: "error".tr(),
+              desc: "phone_invalid".tr(),
               btnOkOnPress: () {},
             ).show();
           } else {
@@ -118,8 +104,8 @@ class _RegisterViewState extends State<RegisterView> {
               context: context,
               dialogType: DialogType.error,
               animType: AnimType.topSlide,
-              title: 'Error',
-              desc: 'UnExpected Error',
+              title: "error".tr(),
+              desc: "unExpected_error".tr(),
               btnOkOnPress: () {},
             ).show();
           }
@@ -169,9 +155,9 @@ class _RegisterViewState extends State<RegisterView> {
                       controller: nameController,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Name is required';
+                          return "name_required".tr();
                         } else if (value.length < 3) {
-                          return 'Name must be at least 3 characters';
+                          return "name_must_be".tr();
                         }
                         return null;
                       },
@@ -185,11 +171,11 @@ class _RegisterViewState extends State<RegisterView> {
                       controller: emailController,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Email is required';
+                          return "email_required".tr();
                         } else if (!RegExp(
                                 r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$")
                             .hasMatch(value)) {
-                          return 'Enter a valid email address';
+                          return "enter_valid_email".tr();
                         }
                         return null;
                       },
@@ -204,9 +190,9 @@ class _RegisterViewState extends State<RegisterView> {
                       controller: passwordController,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Password is required';
+                          return "password_required".tr();
                         } else if (value.length < 6) {
-                          return 'Password must be at least 6 characters';
+                          return "Password_is_week".tr();
                         }
                         return null;
                       },
@@ -221,9 +207,9 @@ class _RegisterViewState extends State<RegisterView> {
                       controller: confirmPasswordController,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Confirm password is required';
+                          return "confirm_required".tr();
                         } else if (value != passwordController.text) {
-                          return 'Passwords do not match';
+                          return "Passwords_do_not_match".tr();
                         }
                         return null;
                       },
@@ -237,7 +223,7 @@ class _RegisterViewState extends State<RegisterView> {
                       controller: phoneController,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Phone number is required';
+                          return "Phone_required".tr();
                         }
                         return null;
                       },

@@ -1,7 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:movies/view/movies/widgets/available_now_list.dart';
+import 'package:movies/view/movies/home/widgets/available_now_list.dart';
 import 'package:movies/core/utility/constants/colors.dart';
 import 'package:movies/core/utility/constants/images.dart';
 import 'package:movies/core/utility/theme_data/custom_theme/text_theme.dart';

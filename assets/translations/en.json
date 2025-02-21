@@ -41,5 +41,23 @@
   "reset_password":"Reset Password",
   "delete_account":"Delete Account",
   "update_data":"Update Data",
-  "or": "OR"
+  "or": "OR",
+  "error": "Error",
+  "user_not_found": "User Not Found Place Check Your Email and Password",
+  "email_required": "Email is required",
+  "user_already_exist": "User already exist",
+  "Password_must_be_at_least8": "Password must be at least 8 characters and include a letter, number, and symbol.",
+  "phone_invalid": "Phone invalid",
+  "unExpected_error": "UnExpected Error",
+  "name_required": "Name is required",
+  "name_must_be": "Name must be at least 3 characters",
+  "enter_valid_email": "Enter a valid email address",
+  "Password_is_week": "Password is too week",
+  "confirm_required": "Confirm password is required",
+  "Passwords_do_not_match": "Passwords do not match",
+  "Phone_required": "Phone number is required",
+  "password_required": "Password is required"
+
+
+
 }

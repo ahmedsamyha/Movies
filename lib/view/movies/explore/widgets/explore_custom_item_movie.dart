@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:movies/core/utility/constants/colors.dart';
 
-class PhotoStarsItem extends StatelessWidget {
-  const PhotoStarsItem({required this.photo,super.key});
+class ExploreCustomItemMovie extends StatelessWidget {
+  const ExploreCustomItemMovie({required this.photo,super.key});
 final String photo;
   @override
   Widget build(BuildContext context) {

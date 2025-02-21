@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:movies/core/utility/constants/images.dart';
 import 'package:movies/core/utility/theme_data/custom_theme/text_theme.dart';
 import 'package:movies/view/aouth/widgets/custom_text_form_field.dart';
-import 'package:movies/view/movies/widgets/grid_view_item.dart';
-import 'package:movies/view/movies/widgets/scroll_horizent.dart';
+import 'package:movies/view/movies/explore/widgets/explore_grid_view.dart';
+import 'package:movies/view/movies/explore/widgets/explore_list_items.dart';
 
 class ExploreMoviesView extends StatelessWidget {
   ExploreMoviesView({super.key});
@@ -27,19 +27,19 @@ class ExploreMoviesView extends StatelessWidget {
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
-    return Padding(
-      padding: const EdgeInsets.only(right:16,top: 30,left: 16),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          SizedBox(
-      height:height*0.05,
-            child: ScrollHorizent(
+    return SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.only(top: 16 , right: 16,left: 16),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            ExploreListItems(
               list: type,
             ),
-          ),
-          GridViewItem(list: list)
-        ],
+            SizedBox(height: 16,),
+            ExploreGridView(list: list)
+          ],
+        ),
       ),
     );
   }

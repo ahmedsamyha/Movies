@@ -11,7 +11,7 @@ import 'package:movies/core/utility/constants/text_constants.dart';
 import 'package:movies/view/aouth/views/forget_password_view.dart';
 import 'package:movies/view/aouth/views/register_view.dart';
 import 'package:movies/view/aouth/widgets/custom_text_form_field.dart';
-import 'package:movies/view/movies/views/app_main.dart';
+import 'package:movies/view/movies/app_main/app_main.dart';
 import 'package:movies/view_model/login_cubit/login_cubit.dart';
 import 'package:movies/view_model/login_cubit/login_state.dart';
 
@@ -52,8 +52,8 @@ class _LoginViewState extends State<LoginView> {
               context: context,
               dialogType: DialogType.error,
               animType: AnimType.topSlide,
-              title: 'Error',
-              desc: 'User Not Found Place Check Your Email and Password',
+              title: "error".tr(),
+              desc: "user_not_found".tr(),
               btnOkOnPress: () {},
             ).show();
         }
@@ -88,11 +88,11 @@ class _LoginViewState extends State<LoginView> {
                         controller: emailController,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Email is required';
+                            return "email_required".tr();
                           } else if (!RegExp(
                               r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$")
                               .hasMatch(value)) {
-                            return 'Enter a valid email address';
+                            return "enter_valid_email".tr();
                           }
                           return null;
                         },
@@ -108,7 +108,7 @@ class _LoginViewState extends State<LoginView> {
                         controller: passwordController,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Password is required';
+                            return "password_required".tr();
                           }
                           return null;
                         },

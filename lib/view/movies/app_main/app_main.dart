@@ -5,10 +5,10 @@ import 'package:flutter_svg/svg.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:movies/core/utility/constants/colors.dart';
 import 'package:movies/core/utility/constants/images.dart';
-import 'package:movies/view/movies/views/explore_movies_view.dart';
-import 'package:movies/view/movies/views/home_view.dart';
-import 'package:movies/view/movies/views/profile_view.dart';
-import 'package:movies/view/movies/views/search_view.dart';
+import 'package:movies/view/movies/explore/view/explore_movies_view.dart';
+import 'package:movies/view/movies/home/view/home_view.dart';
+import 'package:movies/view/movies/profile/view/profile_view.dart';
+import 'package:movies/view/movies/search/view/search_view.dart';
 import 'package:movies/view_model/app_main_cubit/app_main_cubit.dart';
 
 class AppMainView extends StatefulWidget {
