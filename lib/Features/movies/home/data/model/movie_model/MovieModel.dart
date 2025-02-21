@@ -38,7 +38,13 @@ class MovieModel {
     titleLong = json['title_long'];
     slug = json['slug'];
     year = json['year'];
-    rating = json['rating'];
+    if (json['rating'] is int) {
+      rating = (json['rating'] as int).toDouble();
+    } else if (json['rating'] is double) {
+      rating = json['rating'];
+    } else {
+      rating = 0.0;
+    }
     runtime = json['runtime'];
     genres = json['genres'] != null ? json['genres'].cast<String>() : [];
     summary = json['summary'];

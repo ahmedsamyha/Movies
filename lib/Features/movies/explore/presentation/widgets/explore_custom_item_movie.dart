@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:movies/Features/movies/home/data/model/movie_model/MovieModel.dart';
 import 'package:movies/core/utility/constants/colors.dart';
 
 class ExploreCustomItemMovie extends StatelessWidget {
-  const ExploreCustomItemMovie({required this.photo,super.key});
-final String photo;
+   ExploreCustomItemMovie({required this.movieModel,super.key});
+MovieModel? movieModel;
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
         ClipRRect(
             borderRadius: BorderRadius.all(Radius.circular(24)),
-            child: Image.asset(photo,
+            child: Image.network(movieModel!.mediumCoverImage??'https://img.yts.mx/assets/images/movies/mahogany_2022/medium-cover.jpg',
               fit: BoxFit.fill,
             )),
         Container(
@@ -26,7 +27,7 @@ final String photo;
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                '7.7',
+                '${movieModel!.rating}',
                 style: TextStyle(color: Colors.white),
               ),
               Icon(
