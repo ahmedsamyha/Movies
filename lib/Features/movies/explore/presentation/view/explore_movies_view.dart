@@ -9,7 +9,7 @@ import 'package:movies/core/utility/helper/network/dio_heper.dart';
 import 'package:movies/core/utility/theme_data/custom_theme/text_theme.dart';
 
 class ExploreMoviesView extends StatefulWidget {
-  ExploreMoviesView({super.key});
+  const ExploreMoviesView({super.key});
 
   @override
   State<ExploreMoviesView> createState() => _ExploreMoviesViewState();
@@ -40,8 +40,7 @@ class _ExploreMoviesViewState extends State<ExploreMoviesView> {
     var width = MediaQuery.of(context).size.width;
     return BlocProvider(
       create: (context) =>
-          ExploreCubit(GetExploreInitialState(), ApiService(dio: Dio()))
-            ..getExploreMovies(genre: type[selectedIndex].toLowerCase()),
+          ExploreCubit(GetExploreInitialState(), ApiService(dio: Dio()))..getExploreMovies(genre: type[selectedIndex].toLowerCase()),
       child: SafeArea(
         child: Padding(
           padding: const EdgeInsets.only(top: 16, right: 16, left: 16),

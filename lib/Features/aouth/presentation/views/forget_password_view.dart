@@ -28,7 +28,9 @@ class ForgetPasswordView extends StatelessWidget {
                   prefixIcon: Icons.email,
                   label: "email".tr(),
                   controller: emailController,
-                  validator: (value) {},
+                  validator: (value) {
+                    return null;
+                  },
                   onChanged: (value) {},
                   keyboardType: TextInputType.emailAddress,
                   obscureText: false),

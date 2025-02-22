@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:movies/Features/movies/home/data/model/movie_model/MovieModel.dart';
 import 'package:movies/core/utility/constants/colors.dart';
 
 class SearchMoviesItem extends StatelessWidget {
-  const SearchMoviesItem({
+   SearchMoviesItem({
+    required this.movieModel,
     super.key,
-    required this.image,
   });
 
-  final String image;
-
+   MovieModel? movieModel;
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
         ClipRRect(
             borderRadius: BorderRadius.all(Radius.circular(24)),
-            child: Image.asset(image,
+            child: Image.network(movieModel!.mediumCoverImage??'https://img.yts.mx/assets/images/movies/mahogany_2022/medium-cover.jpg',
               fit: BoxFit.fill,
             )),
         Container(
@@ -31,7 +31,7 @@ class SearchMoviesItem extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                '7.7',
+                '${movieModel!.rating}',
                 style: TextStyle(color: Colors.white),
               ),
               Icon(

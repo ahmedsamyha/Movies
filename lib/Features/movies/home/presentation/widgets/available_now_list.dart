@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies/Features/movies/home/data/data_source/home_cubit/home_cubit.dart';
 import 'package:movies/Features/movies/home/data/data_source/home_cubit/home_state.dart';
-import 'package:movies/core/utility/constants/colors.dart';
+import 'package:movies/Features/movies/home/presentation/widgets/available_now_shimmer.dart';
 import 'package:movies/core/utility/constants/images.dart';
 import 'available_now_item.dart';
+
 class AvailableNowList extends StatefulWidget {
-  AvailableNowList({
+  const AvailableNowList({
     super.key,
   });
 
@@ -22,23 +23,13 @@ class _AvailableNowListState extends State<AvailableNowList> {
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
-    return BlocConsumer<HomeCubit, HomeStates>(
-      listener: (context, state) {
-        if (state is GetAvailableLoadingState) {
-          Center(child: CircularProgressIndicator());
-        } else if (state is GetAvailableFailureState) {
-          print(state.errorMessage);
-        }
-      },
+
+    return BlocBuilder<HomeCubit, HomeStates>(
       builder: (context, state) {
         var cubit = BlocProvider.of<HomeCubit>(context);
-        if (cubit.availableMoviesList.isEmpty) {
-          return Padding(
-            padding:  EdgeInsets.symmetric(vertical: height*.3),
-            child: Center(child: CircularProgressIndicator(
-              color: AppColors.kPrimaryColor,
-            )),
-          );
+        if (cubit.availableMoviesList.isEmpty ||
+            state is GetAvailableLoadingState) {
+          return AvailableNowShimmer();
         }
         return Container(
           height: height * .67,
@@ -53,12 +44,6 @@ class _AvailableNowListState extends State<AvailableNowList> {
           )),
           child: Stack(
             children: [
-              Image.asset(
-                KImages.gradiantColors,
-                fit: BoxFit.fill,
-                width: double.infinity,
-                height: height * .7,
-              ),
               Positioned(
                   top: 38,
                   left: width * .15,
