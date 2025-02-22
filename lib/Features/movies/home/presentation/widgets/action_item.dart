@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:movies/Features/movies/home/data/model/movie_model/MovieModel.dart';
 import 'package:movies/core/utility/constants/colors.dart';
 
 class ActionItem extends StatelessWidget {
-  const ActionItem({
-    super.key, required this.image,
+   ActionItem({
+    super.key,  this.movieModel,
 
   });
-  final String image;
+  MovieModel? movieModel;
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
@@ -15,8 +16,8 @@ class ActionItem extends StatelessWidget {
 
         ClipRRect(
             borderRadius: BorderRadius.circular(24),
-            child: Image.asset(
-             image,
+            child: Image.network(
+             movieModel!.mediumCoverImage??'https://img.yts.mx/assets/images/movies/mahogany_2022/medium-cover.jpg',
               fit: BoxFit.fill,
               width: width * .35,
             )),
@@ -33,7 +34,7 @@ class ActionItem extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                '7.7',
+                "${movieModel!.rating}",
                 style: TextStyle(color: Colors.white),
               ),
               Icon(
