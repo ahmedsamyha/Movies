@@ -20,7 +20,7 @@ class _AppMainViewState extends State<AppMainView> {
     var width = MediaQuery.of(context).size.width;
     var appCubit = BlocProvider.of<AppMainCubit>(context);
     return Scaffold(
-
+      resizeToAvoidBottomInset: false,
         body: Stack(
             children: [
               appCubit.screens[appCubit.currentIndex],

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies/Features/movies/home/data/data_source/home_cubit/home_cubit.dart';
 import 'package:movies/Features/movies/home/data/data_source/home_cubit/home_state.dart';
-import 'package:movies/core/utility/constants/images.dart';
+import 'package:movies/Features/movies/home/presentation/widgets/action_shimmer.dart';
 
 import 'action_item.dart';
 
@@ -14,16 +14,12 @@ class ActionListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
-    return BlocConsumer<HomeCubit, HomeStates>(
-      listener: (context, state) {
-        if (state is GetActionLoadingState) {
-          Center(child: CircularProgressIndicator());
-        } else if (state is GetActionFailureState) {
-          print(state.errorMessage);
-        }
-      },
+    return BlocBuilder<HomeCubit, HomeStates>(
       builder: (context, state) {
         var actionCubit = BlocProvider.of<HomeCubit>(context);
+        if(state is GetActionLoadingState){
+          return ActionShimmer();
+        }
         return SizedBox(
           height: height * .28,
           child: Padding(
