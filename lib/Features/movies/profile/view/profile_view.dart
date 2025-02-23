@@ -1,8 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:movies/Features/movies/explore/presentation/widgets/explore_grid_view.dart';
-import 'package:movies/Features/movies/explore/presentation/widgets/explore_list_items.dart';
-import 'package:movies/Features/movies/explore/widget/explor_custom_item.dart';
+import 'package:movies/Features/movies/profile/view/pick_avatar.dart';
+import 'package:movies/Features/movies/profile/widget/photo_custom_item.dart';
+
 import 'package:movies/core/utility/constants/colors.dart';
 import 'package:movies/core/utility/constants/images.dart';
 import 'package:movies/core/utility/theme_data/custom_theme/text_theme.dart';
@@ -119,7 +120,13 @@ class _ProfileViewState extends State<ProfileView> {
                             child: Row(
                               children: [
                                 Expanded(
-                                  child: ElevatedButton(onPressed: (){},
+                                  child: ElevatedButton(onPressed: (){
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => PickAvatar()),
+                                    );
+                                  },
                                       child: Text('Edit Profile',
                                         style: KStyles.roboto20w400Black,)),
                                 ),
