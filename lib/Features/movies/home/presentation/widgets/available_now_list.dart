@@ -1,6 +1,7 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movies/Features/movies/details_view/presentation/view/details_view.dart';
 import 'package:movies/Features/movies/home/data/data_source/home_cubit/home_cubit.dart';
 import 'package:movies/Features/movies/home/data/data_source/home_cubit/home_state.dart';
 import 'package:movies/Features/movies/home/presentation/widgets/available_now_shimmer.dart';
@@ -55,8 +56,13 @@ class _AvailableNowListState extends State<AvailableNowList> {
                   child: Swiper(
                     itemBuilder: (context, index) {
                       cubit.currentIndex = index;
-                      return AvailableNowItem(
-                          movieModel: cubit.availableMoviesList[index]);
+                      return InkWell(
+                        onTap: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=>DetailsView(movieModel: cubit.availableMoviesList[index],)));
+                        },
+                        child: AvailableNowItem(
+                            movieModel: cubit.availableMoviesList[index]),
+                      );
                     },
                     onIndexChanged: (index) {
                       setState(() {});

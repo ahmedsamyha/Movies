@@ -13,6 +13,7 @@ abstract class KImages {
   static final String testMovieDetails = 'assets/images/testdetailsmovie.png';
   static final String testVrDetails = 'assets/images/testvermovie.png';
   static final String testHorDetails = 'assets/images/testhormovie.png';
+  static final String detailsGradiant = 'assets/images/details_grediant.png';
 
   static final String arabic = 'assets/images/eg.svg';
   static final String english = 'assets/images/lr.svg';

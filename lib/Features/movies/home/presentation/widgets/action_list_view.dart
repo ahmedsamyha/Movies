@@ -4,6 +4,7 @@ import 'package:movies/Features/movies/home/data/data_source/home_cubit/home_cub
 import 'package:movies/Features/movies/home/data/data_source/home_cubit/home_state.dart';
 import 'package:movies/Features/movies/home/presentation/widgets/action_shimmer.dart';
 
+import '../../../details_view/presentation/view/details_view.dart';
 import 'action_item.dart';
 
 class ActionListView extends StatelessWidget {
@@ -34,8 +35,13 @@ class ActionListView extends StatelessWidget {
               itemCount: actionCubit.actionMoviesList.length,
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
-                return ActionItem(
-                  movieModel: actionCubit.actionMoviesList[index],
+                return InkWell(
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>DetailsView(movieModel: actionCubit.actionMoviesList[index],)));
+                  },
+                  child: ActionItem(
+                    movieModel: actionCubit.actionMoviesList[index],
+                  ),
                 );
               },
             ),

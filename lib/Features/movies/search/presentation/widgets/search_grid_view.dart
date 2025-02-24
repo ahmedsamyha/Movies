@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movies/Features/movies/details_view/presentation/view/details_view.dart';
 import 'package:movies/Features/movies/search/data/data_source/search_cubit/search_cubit.dart';
 import 'package:movies/Features/movies/search/data/data_source/search_cubit/search_state.dart';
 import 'package:movies/Features/movies/search/presentation/widgets/search_movies_item.dart';
@@ -41,7 +42,11 @@ class _SearchGridViewState extends State<SearchGridView> {
                 mainAxisSpacing: 8),
             itemCount: cubit.searchList.length,
             itemBuilder: (context, index) {
-              return SearchMoviesItem(movieModel: cubit.searchList[index],);
+              return InkWell(
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>DetailsView(movieModel: cubit.searchList[index],)));
+                  },
+                  child: SearchMoviesItem(movieModel: cubit.searchList[index],));
             },
           ),
         );

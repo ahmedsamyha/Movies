@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movies/Features/movies/details_view/presentation/view/details_view.dart';
 import 'package:movies/Features/movies/explore/data/data_source/explore_cubit/explore_cubit.dart';
 import 'package:movies/Features/movies/explore/data/data_source/explore_cubit/explore_state.dart';
 import 'package:movies/Features/movies/explore/presentation/widgets/explore_custom_item_movie.dart';
@@ -28,8 +29,13 @@ class ExploreGridView extends StatelessWidget {
               itemCount: exploreCubit.exploreMoviesList.length,
               physics: BouncingScrollPhysics(),
               itemBuilder: (context, index) {
-                return ExploreCustomItemMovie(
-                  movieModel: exploreCubit.exploreMoviesList[index],
+                return InkWell(
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>DetailsView(movieModel: exploreCubit.exploreMoviesList[index],)));
+                  },
+                  child: ExploreCustomItemMovie(
+                    movieModel: exploreCubit.exploreMoviesList[index],
+                  ),
                 );
               },
             ),

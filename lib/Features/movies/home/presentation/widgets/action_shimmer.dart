@@ -18,7 +18,7 @@ class ActionShimmer extends StatelessWidget {
         child: ListView.separated(
           physics: const BouncingScrollPhysics(),
           scrollDirection: Axis.horizontal,
-          itemCount: 6, // Display 6 shimmer items
+          itemCount: 6,
           separatorBuilder: (context, index) {
             return const SizedBox(width: 16);
           },
@@ -27,8 +27,8 @@ class ActionShimmer extends StatelessWidget {
               baseColor: Colors.white.withValues(alpha: 0.2),
               highlightColor: Colors.white.withValues(alpha: 0.3),
               child: Container(
-                width: width * 0.4, // Adjust width for card size
-                height: height * 0.28, // Adjust height to match original
+                width: width * 0.4,
+                height: height * 0.28,
                 decoration: BoxDecoration(
                   color: AppColors.darkBackground,
                   borderRadius: BorderRadius.circular(12),

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:movies/core/utility/constants/colors.dart';
 import 'package:shimmer/shimmer.dart';
 
-class ExploreShimmerGridView extends StatelessWidget {
-  const ExploreShimmerGridView({super.key});
+class SimilarShimmerGridView extends StatelessWidget {
+  const SimilarShimmerGridView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,8 +15,9 @@ class ExploreShimmerGridView extends StatelessWidget {
         crossAxisSpacing: 16,
         mainAxisSpacing: 8,
       ),
-      itemCount: 6,
-      physics: BouncingScrollPhysics(),
+      itemCount: 4,
+      physics: NeverScrollableScrollPhysics(),
+      shrinkWrap: true,
       itemBuilder: (context, index) {
         return ClipRRect(
           borderRadius: BorderRadius.circular(16),
