@@ -7,10 +7,9 @@ class ApiService {
 
   ApiService({required this.dio});
   Future<Map<String, dynamic>> get(
-      {required String endPoint,
-      required String token
-      }) async {
-    var response = await dio.get('$_moviesBaseUrl$endPoint',options: Options(headers: {
+      {required String endPoint, required String token}) async {
+    var response = await dio.get('$_moviesBaseUrl$endPoint',
+        options: Options(headers: {
           'Content-Type': 'application/json',
           'Authorization': token ?? '',
         }));
@@ -33,5 +32,27 @@ class ApiService {
       ),
     );
     return response.data;
+  }
+
+  Future<Map<String, dynamic>> getProfile(
+      {required String endPoint, required String token}) async {
+    try {
+      Response response = await dio.get(
+        '$_baseUrl/$endPoint',
+        options: Options(
+          headers: {
+            'Authorization': "Bearer $token",
+            'Content-Type': 'application/json',
+          },
+        ),
+      );
+      return response.data;
+    } catch (e) {
+      if (e is DioException) {
+        throw e.response?.data ?? 'Error fetching profile';
+      } else {
+        throw e.toString();
+      }
+    }
   }
 }

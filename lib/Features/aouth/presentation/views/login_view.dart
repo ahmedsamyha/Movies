@@ -139,7 +139,6 @@ class _LoginViewState extends State<LoginView> {
                                 BlocProvider.of<LoginCubit>(context).userLogin(
                                     email: emailController.text,
                                     password: passwordController.text);
-                                print(AppText.token);
                               }
                             },
                             child: Text(

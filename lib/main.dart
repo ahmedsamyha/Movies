@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movies/Features/aouth/presentation/views/login_view.dart';
 import 'package:movies/Features/movies/app_main/presentation/app_main.dart';
 import 'package:movies/Features/movies/details_view/presentation/view/details_view.dart';
 import 'Features/aouth/data/data_source/login_cubit/login_cubit.dart';
@@ -55,7 +56,7 @@ class MoviesApp extends StatelessWidget {
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,
         locale: context.locale,
-        home:  AppMainView(),
+        home:  LoginView(),
       ),
     );
   }

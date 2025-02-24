@@ -5,8 +5,6 @@ import 'package:movies/Features/aouth/data/model/login_model/LoginModel.dart';
 import 'package:movies/core/utility/constants/text_constants.dart';
 import 'package:movies/core/utility/helper/network/dio_heper.dart';
 
-
-
 class LoginCubit extends Cubit<LoginStates>{
   LoginCubit(super.initialState, this.apiService);
   LoginModel? loginModel;
@@ -31,8 +29,9 @@ class LoginCubit extends Cubit<LoginStates>{
       );
       print('Full Response: ${response.toString()}');
        loginModel= LoginModel.fromJson(response);
-       AppText.token = loginModel?.data;
       emit(LoginSuccessState());
+      AppText.token = loginModel?.data;
+      print('MY Token IS ***************************${AppText.token}');
     } catch (e) {
       if (e is DioException) {
         print('*****************Dio Error: ${e.response?.data}');
