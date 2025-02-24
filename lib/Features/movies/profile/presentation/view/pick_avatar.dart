@@ -1,9 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:movies/Features/aouth/presentation/widgets/custom_text_form_field.dart';
-import 'package:movies/Features/movies/profile/widget/show_buttom_sheet.dart';
 import 'package:movies/core/utility/constants/colors.dart';
 import 'package:movies/core/utility/theme_data/custom_theme/text_theme.dart';
+
+import '../widget/show_buttom_sheet.dart';
 
 class PickAvatar extends StatefulWidget {
   @override
