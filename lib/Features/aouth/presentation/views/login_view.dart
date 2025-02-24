@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:movies/Features/aouth/data/data_source/login_cubit/login_cubit.dart';
 import 'package:movies/Features/aouth/data/data_source/login_cubit/login_state.dart';
+import 'package:movies/Features/aouth/data/data_source/firebase/firebase_google.dart';
 import 'package:movies/Features/aouth/presentation/views/forget_password_view.dart';
 import 'package:movies/Features/aouth/presentation/views/register_view.dart';
 import 'package:movies/Features/aouth/presentation/widgets/custom_text_form_field.dart';
@@ -203,8 +204,8 @@ class _LoginViewState extends State<LoginView> {
                     SizedBox(
                         width: double.infinity,
                         child: ElevatedButton(
-                            onPressed: () {
-
+                            onPressed: ()async {
+                              await FirebaseManeger.loginWithGoogle();
                             },
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
