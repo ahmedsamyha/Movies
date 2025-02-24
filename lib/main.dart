@@ -1,10 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies/Features/aouth/presentation/views/login_view.dart';
 import 'package:movies/Features/movies/app_main/presentation/app_main.dart';
 import 'package:movies/Features/movies/details_view/presentation/view/details_view.dart';
+import 'package:movies/firebase_options.dart';
 import 'Features/aouth/data/data_source/login_cubit/login_cubit.dart';
 import 'Features/aouth/data/data_source/login_cubit/login_state.dart';
 import 'Features/aouth/data/data_source/register_cubit/register_cubit.dart';
@@ -17,6 +19,9 @@ import 'core/utility/theme_data/app_theme.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
   runApp(
     EasyLocalization(

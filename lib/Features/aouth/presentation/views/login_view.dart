@@ -203,7 +203,9 @@ class _LoginViewState extends State<LoginView> {
                     SizedBox(
                         width: double.infinity,
                         child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+
+                            },
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
@@ -276,3 +278,5 @@ class _LoginViewState extends State<LoginView> {
     );
   }
 }
+///flutterfire configure --project=movies-c0d99 --android-app-id=com.example.movies
+///flutterfire configure --project=todo-8f8d9 --android-app-id=com.example.todoapp
