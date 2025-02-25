@@ -22,6 +22,7 @@ class LoginCubit extends Cubit<LoginStates>{
     };
     print('Request Data: $formData');
     try {
+      emit(LoginLoadingState());
       var response = await apiService.post(
         endPoint: 'auth/login',
         token: AppText.token ?? '',

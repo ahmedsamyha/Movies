@@ -22,8 +22,8 @@ class ExploreShimmerGridView extends StatelessWidget {
           borderRadius: BorderRadius.circular(16),
 
           child: Shimmer.fromColors(
-            baseColor: Colors.white.withOpacity(.2),
-            highlightColor: Colors.white.withOpacity(.3),
+            baseColor: Colors.white.withOpacity(.04),
+            highlightColor: Colors.white.withOpacity(.1),
             child: Container(
               decoration: BoxDecoration(
                 color: AppColors.darkBackground,

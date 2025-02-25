@@ -1,13 +1,16 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movies/Features/movies/details_view/data/data_source/details_cubit/details_state.dart';
+import 'package:movies/Features/movies/profile/data/data_source/favorites_cubit/favorites_cubit.dart';
+import 'package:movies/Features/movies/profile/data/data_source/favorites_cubit/favorites_states.dart';
 import 'package:movies/Features/movies/profile/data/data_source/profile_cubit/profile_cubit.dart';
 import 'package:movies/Features/movies/profile/data/data_source/profile_cubit/profile_state.dart';
+import 'package:movies/Features/movies/profile/presentation/view/pick_avatar.dart';
 import 'package:movies/core/utility/constants/colors.dart';
 import 'package:movies/core/utility/constants/images.dart';
 import 'package:movies/core/utility/helper/network/dio_heper.dart';
 import 'package:movies/core/utility/theme_data/custom_theme/text_theme.dart';
-
 import '../widget/photo_custom_item.dart';
 
 class ProfileView extends StatefulWidget {
@@ -18,17 +21,6 @@ class ProfileView extends StatefulWidget {
 }
 
 class _ProfileViewState extends State<ProfileView> {
-  List<String> list = [
-    KImages.movie1971,
-    KImages.movieCaptain,
-    KImages.movieBaby,
-    KImages.movie1971,
-    KImages.movieCaptain,
-    KImages.movieBaby,
-    KImages.movie1971,
-    KImages.movieCaptain,
-    KImages.movieBaby,
-  ];
   final List<String> avatars = [
     KImages.avatar1,
     KImages.avatar2,
@@ -47,10 +39,19 @@ class _ProfileViewState extends State<ProfileView> {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
 
-    return BlocProvider(
-      create: (context) =>
-          ProfileCubit(GetProfileInitialState(), ApiService(dio: Dio()))
-            ..getProfileMovies(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) =>
+              ProfileCubit(GetProfileInitialState(), ApiService(dio: Dio()))
+                ..getProfileMovies(),
+        ),
+        BlocProvider(
+          create: (context) =>
+              FavoritesCubit(FavoritesInitialState(), ApiService(dio: Dio()))
+                ..getFavoritesMovies(),
+        ),
+      ],
       child: BlocBuilder<ProfileCubit, ProfileStates>(
         builder: (context, state) {
           var profileCubit = BlocProvider.of<ProfileCubit>(context);
@@ -111,7 +112,9 @@ class _ProfileViewState extends State<ProfileView> {
                                 children: [
                                   Expanded(
                                     child: ElevatedButton(
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        Navigator.push(context, MaterialPageRoute(builder: (context)=>PickAvatar()));
+                                      },
                                       child: Text('Edit Profile',
                                           style: KStyles.roboto20w400Black),
                                     ),
@@ -198,20 +201,7 @@ class _ProfileViewState extends State<ProfileView> {
                 ),
               ),
               selected != 0
-                  ? SliverGrid.builder(
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 3,
-                        childAspectRatio: 0.65,
-                        crossAxisSpacing: 24,
-                        mainAxisSpacing: 8,
-                      ),
-                      itemCount: list.length,
-                      itemBuilder: (context, index) {
-                        return PhotoStarsItem(photo: list[index]);
-                      },
-                    )
-                  : SliverToBoxAdapter(
+                  ? SliverToBoxAdapter(
                       child: Center(
                         child: Image.asset(
                           KImages.empty,
@@ -219,6 +209,34 @@ class _ProfileViewState extends State<ProfileView> {
                           height: height * .5,
                         ),
                       ),
+                    )
+                  : BlocBuilder<FavoritesCubit, FavoritesStates>(
+                      builder: (context, state) {
+                        var cubit = BlocProvider.of<FavoritesCubit>(context);
+                        if (state is GetDetailsLoadingState) {
+                          return Center(
+                              child: CircularProgressIndicator(
+                            color: AppColors.kPrimaryColor,
+                          ));
+                        } else if (state is GetFavoritesFailureState) {
+                          print(state.errorMessage);
+                        }
+                        return SliverGrid.builder(
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 3,
+                            childAspectRatio: 0.66,
+                            crossAxisSpacing: 16,
+                            mainAxisSpacing: 16,
+                          ),
+                          itemCount: cubit.faveMoviesList.length,
+                          itemBuilder: (context, index) {
+                            return PhotoStarsItem(
+                              favoritesModel: cubit.faveMoviesList[index],
+                            );
+                          },
+                        );
+                      },
                     ),
             ],
           );

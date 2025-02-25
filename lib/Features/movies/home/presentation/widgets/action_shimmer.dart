@@ -24,8 +24,8 @@ class ActionShimmer extends StatelessWidget {
           },
           itemBuilder: (context, index) {
             return Shimmer.fromColors(
-              baseColor: Colors.white.withValues(alpha: 0.2),
-              highlightColor: Colors.white.withValues(alpha: 0.3),
+              baseColor: Colors.white.withValues(alpha: 0.04),
+              highlightColor: Colors.white.withValues(alpha: 0.1),
               child: Container(
                 width: width * 0.4,
                 height: height * 0.28,

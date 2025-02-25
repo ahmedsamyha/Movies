@@ -23,9 +23,22 @@ class OnBoardingView5 extends StatelessWidget {
             onNextPressed: () {
               Navigator.pushAndRemoveUntil(
                 context,
-                MaterialPageRoute(builder: (context) => LoginView()),
-                (route) => false,
+                PageRouteBuilder(
+                  pageBuilder: (context, animation, secondaryAnimation) => LoginView(),
+                  transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                    const begin = Offset(1.0, 0.0); // Start from right
+                    const end = Offset.zero;
+                    const curve = Curves.easeInOut;
+
+                    var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+                    var offsetAnimation = animation.drive(tween);
+
+                    return SlideTransition(position: offsetAnimation, child: child);
+                  },
+                ),
+                    (route) => false,
               );
+
             },
             onBackPressed: () {
               Navigator.pop(context);
