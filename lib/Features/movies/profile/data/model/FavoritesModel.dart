@@ -1,7 +1,7 @@
 class FavoritesModel {
   final String movieId;
   final String name;
-  final double? rating; // Nullable double
+  final double? rating;
   final String imageURL;
   final String year;
 
@@ -17,9 +17,9 @@ class FavoritesModel {
     return FavoritesModel(
       movieId: json['movieId'].toString(),
       name: json['name'] ?? 'Unknown',
-      rating: (json['rating'] is int) // Check if it's int
-          ? (json['rating'] as int).toDouble() // Convert to double
-          : json['rating'] as double?, // Otherwise, use it as is
+      rating: (json['rating'] is int)
+          ? (json['rating'] as int).toDouble()
+          : json['rating'] as double?,
       imageURL: json['imageURL'] ?? '',
       year: json['year'].toString(),
     );

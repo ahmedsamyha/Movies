@@ -177,6 +177,8 @@ class _LoginViewState extends State<LoginView> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => RegisterView()));
+                            emailController.clear();
+                            passwordController.clear();
                           },
                           child: Text(
                             "create_account".tr(),

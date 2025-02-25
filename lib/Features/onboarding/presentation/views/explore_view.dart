@@ -48,8 +48,7 @@ class ExploreView extends StatelessWidget {
                               PageRouteBuilder(
                                 pageBuilder: (context, animation, secondaryAnimation) => OnBoardingView1(),
                                 transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                                  const begin = Offset(1.0, 0.0); // Start from right
-                                  const end = Offset.zero;
+                                  const begin = Offset(1.0, 0.0);                                   const end = Offset.zero;
                                   const curve = Curves.easeInOut;
 
                                   var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));

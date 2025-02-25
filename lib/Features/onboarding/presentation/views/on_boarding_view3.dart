@@ -23,7 +23,6 @@ class OnBoardingView3 extends StatelessWidget {
             content:
             "boarding3_body".tr(),
             btnText: "next".tr(),
-
             isActiveBack: true,
             onNextPressed: (){
               Navigator.push(
@@ -31,7 +30,7 @@ class OnBoardingView3 extends StatelessWidget {
                 PageRouteBuilder(
                   pageBuilder: (context, animation, secondaryAnimation) => OnBoardingView4(),
                   transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                    const begin = Offset(1.0, 0.0); // Start from right
+                    const begin = Offset(1.0, 0.0);
                     const end = Offset.zero;
                     const curve = Curves.easeInOut;
 
