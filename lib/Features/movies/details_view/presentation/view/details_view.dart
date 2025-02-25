@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies/Features/movies/details_view/data/data_source/details_cubit/details_cubit.dart';
 import 'package:movies/Features/movies/details_view/data/data_source/details_cubit/details_state.dart';
@@ -8,61 +7,28 @@ import 'package:movies/Features/movies/home/data/model/movie_model/MovieModel.da
 import 'package:movies/Features/movies/details_view/presentation/wedgits/custom_rating_item.dart';
 import 'package:movies/Features/movies/details_view/presentation/wedgits/details_screen_shots_item.dart';
 import 'package:movies/Features/movies/details_view/presentation/wedgits/similar_grid_view.dart';
-import 'package:movies/Features/movies/profile/data/data_source/favorites_cubit/favorites_cubit.dart';
-import 'package:movies/Features/movies/profile/data/data_source/favorites_cubit/favorites_states.dart';
-import 'package:movies/core/utility/constants/colors.dart';
 import 'package:movies/core/utility/constants/images.dart';
-import 'package:movies/core/utility/constants/text_constants.dart';
 import 'package:movies/core/utility/helper/network/dio_heper.dart';
 import 'package:movies/core/utility/theme_data/custom_theme/text_theme.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import '../wedgits/genres_grid_view.dart';
 
-class DetailsView extends StatefulWidget {
+class DetailsView extends StatelessWidget {
   DetailsView({super.key, required this.movieModel});
   MovieModel? movieModel;
-
-  @override
-  State<DetailsView> createState() => _DetailsViewState();
-}
-
-class _DetailsViewState extends State<DetailsView> {
-   bool isFavorite = AppText.isFave??false;
-  void changeFavorite() {
-    setState(() {
-      isFavorite = !isFavorite;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(0),
-        child: AppBar(
-          systemOverlayStyle: SystemUiOverlayStyle(
-              statusBarColor:Colors.transparent
-          ),
-        ),
-      ),
-      body: BlocProvider(
-  create: (context) => FavoritesCubit(FavoritesInitialState(), ApiService(dio: Dio()))..getIsFaveMovies(movieId: widget.movieModel!.id!.toInt()),
-  child: BlocBuilder<FavoritesCubit, FavoritesStates>(
-  builder: (context, state) {
-    if (state is GetFavoritesSuccessState) {
-      isFavorite = AppText.isFave ?? false;
-    }
-    return ListView(
+      body: ListView(
         physics: BouncingScrollPhysics(),
         children: [
           Container(
             height: height * .6,
             decoration: BoxDecoration(
                 image: DecorationImage(
-                    image: NetworkImage(widget.movieModel!.largeCoverImage ?? ''),
+                    image: NetworkImage(movieModel!.largeCoverImage ?? ''),
                     fit: BoxFit.fill)),
             child: SafeArea(
               child: Stack(
@@ -86,20 +52,11 @@ class _DetailsViewState extends State<DetailsView> {
                           )),
                       Spacer(),
                       IconButton(
-                          onPressed: () {
-                            changeFavorite();
-                            BlocProvider.of<FavoritesCubit>(context).addFavorites(
-                              movieId: widget.movieModel!.id.toString(),
-                              name: widget.movieModel!.title ?? '',
-                              rating: widget.movieModel!.rating ?? 9.5,
-                              imageURL: widget.movieModel!.mediumCoverImage ?? "",
-                              year: widget.movieModel!.year.toString(),
-                            );
-                          },
+                          onPressed: () {},
                           icon: Icon(
                             Icons.bookmark,
                             size: 29,
-                            color: isFavorite?AppColors.kPrimaryColor:Colors.white,
+                            color: Colors.white,
                           )),
                     ],
                   ),
@@ -115,12 +72,12 @@ class _DetailsViewState extends State<DetailsView> {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Text(
-                            widget.movieModel!.title ?? '',
+                            movieModel!.title ?? '',
                             style: KStyles.roboto24w700White,
                             textAlign: TextAlign.center,
                           ),
                           Text(
-                            '${widget.movieModel!.year}',
+                            '${movieModel!.year}',
                             style: KStyles.roboto20w700Gray,
                           ),
                         ],
@@ -140,13 +97,7 @@ class _DetailsViewState extends State<DetailsView> {
                 SizedBox(
                   width: width,
                   child: ElevatedButton(
-                    onPressed: () async{
-                      Uri uri = Uri.parse(widget.movieModel!.url!);
-                      if (!await launchUrl(uri)) {
-                      }else{
-                        await launchUrl(uri);
-                      }
-                    },
+                    onPressed: () {},
                     style:
                         ElevatedButton.styleFrom(backgroundColor: Colors.red),
                     child: Text(
@@ -161,12 +112,12 @@ class _DetailsViewState extends State<DetailsView> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       CustomRatingItem(
-                          text: '18', icon: Icons.favorite_outlined),
+                          text: '15', icon: Icons.favorite_outlined),
                       CustomRatingItem(
-                          text: '${widget.movieModel!.runtime}',
+                          text: '${movieModel!.runtime}',
                           icon: Icons.watch_later_rounded),
                       CustomRatingItem(
-                          text: '${widget.movieModel!.rating}',
+                          text: '${movieModel!.rating}',
                           icon: Icons.star_rounded),
                     ],
                   ),
@@ -179,7 +130,7 @@ class _DetailsViewState extends State<DetailsView> {
                     physics: NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     itemBuilder: (context, index) => DetailsScreenShotsItem(
-                        image: '${widget.movieModel!.backgroundImageOriginal}'),
+                        image: '${movieModel!.backgroundImageOriginal}'),
                     separatorBuilder: (context, index) => SizedBox(
                           height: 8,
                         ),
@@ -191,8 +142,7 @@ class _DetailsViewState extends State<DetailsView> {
                 BlocProvider(
                   create: (context) => DetailsCubit(
                       GetDetailsInitialState(), ApiService(dio: Dio()))
-                    ..getDetailsMovies(
-                        genre: widget.movieModel!.genres![0].toLowerCase()),
+                    ..getDetailsMovies(genre:movieModel!.genres![0].toLowerCase()),
                   child: SimilarGridView(),
                 ),
                 Text(
@@ -201,9 +151,9 @@ class _DetailsViewState extends State<DetailsView> {
                 ),
                 Text(
                   maxLines: 15,
-                  widget.movieModel!.summary == ""
-                      ? '${widget.movieModel!.titleLong}'
-                      : '${widget.movieModel!.summary}',
+                  movieModel!.summary == ""
+                      ? '${movieModel!.titleLong}'
+                      : '${movieModel!.summary}',
                   style: KStyles.roboto16w400White,
                 ),
                 Text(
@@ -211,16 +161,13 @@ class _DetailsViewState extends State<DetailsView> {
                   style: KStyles.roboto24w700White,
                 ),
                 GenresGridView(
-                  movieModel: widget.movieModel,
+                  movieModel: movieModel,
                 )
               ],
             ),
           )
         ],
-      );
-  },
-),
-),
+      ),
     );
   }
 }

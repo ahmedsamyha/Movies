@@ -23,8 +23,8 @@ class SearchShimmerGridView extends StatelessWidget {
             borderRadius: BorderRadius.circular(16),
       
             child: Shimmer.fromColors(
-              baseColor: Colors.white.withValues(alpha: 0.04),
-              highlightColor: Colors.white.withValues(alpha: 0.1),
+              baseColor: Colors.white.withValues(alpha: 0.2),
+              highlightColor: Colors.white.withValues(alpha: 0.3),
               child: Container(
                 decoration: BoxDecoration(
                   color: AppColors.darkBackground,

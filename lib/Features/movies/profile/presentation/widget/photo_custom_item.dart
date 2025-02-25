@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:movies/Features/movies/profile/data/model/FavoritesModel.dart';
 import 'package:movies/core/utility/constants/colors.dart';
 
 class PhotoStarsItem extends StatelessWidget {
-   PhotoStarsItem({required this.favoritesModel,super.key});
-  FavoritesModel? favoritesModel;
+  const PhotoStarsItem({required this.photo,super.key});
+  final String photo;
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
         ClipRRect(
             borderRadius: BorderRadius.all(Radius.circular(24)),
-            child: Image.network(favoritesModel!.imageURL??'',
+            child: Image.asset(photo,
               fit: BoxFit.fill,
             )),
         Container(
@@ -27,7 +26,7 @@ class PhotoStarsItem extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                '${favoritesModel!.rating}',
+                '7.7',
                 style: TextStyle(color: Colors.white),
               ),
               Icon(

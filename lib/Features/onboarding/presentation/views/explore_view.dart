@@ -12,6 +12,7 @@ class ExploreView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
+
           decoration: BoxDecoration(
               image: DecorationImage(
                   image: AssetImage(KImages.explore), fit: BoxFit.fill)),
@@ -44,25 +45,8 @@ class ExploreView extends StatelessWidget {
                           onPressed: () {
                             Navigator.pushAndRemoveUntil(
                               context,
-                              PageRouteBuilder(
-                                pageBuilder:
-                                    (context, animation, secondaryAnimation) =>
-                                        OnBoardingView1(),
-                                transitionsBuilder: (context, animation,
-                                    secondaryAnimation, child) {
-                                  const begin = Offset(1.0, 0.0);
-                                  const end = Offset.zero;
-                                  const curve = Curves.easeInOut;
-
-                                  var tween = Tween(begin: begin, end: end)
-                                      .chain(CurveTween(curve: curve));
-                                  var offsetAnimation = animation.drive(tween);
-
-                                  return SlideTransition(
-                                      position: offsetAnimation, child: child);
-                                },
-                              ),
-                              (route) => false,
+                              MaterialPageRoute(builder: (context) => OnBoardingView1()),
+                                  (route) => false,
                             );
                           },
                           child: Text(

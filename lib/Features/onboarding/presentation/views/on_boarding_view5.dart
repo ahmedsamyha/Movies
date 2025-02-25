@@ -21,27 +21,11 @@ class OnBoardingView5 extends StatelessWidget {
             isActiveBack: true,
             content: '',
             onNextPressed: () {
-              Navigator.push(
+              Navigator.pushAndRemoveUntil(
                 context,
-                PageRouteBuilder(
-                  pageBuilder: (context, animation, secondaryAnimation) => LoginView(),
-                  transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                    var fadeAnimation = Tween<double>(begin: 0.0, end: 1.0)
-                        .chain(CurveTween(curve: Curves.easeInOut))
-                        .animate(animation);
-
-                    var slideAnimation = Tween<Offset>(begin: Offset(1.0, 0.0), end: Offset.zero)
-                        .chain(CurveTween(curve: Curves.easeInOut))
-                        .animate(animation);
-
-                    return FadeTransition(
-                      opacity: fadeAnimation,
-                      child: SlideTransition(position: slideAnimation, child: child),
-                    );
-                  },
-                ),
+                MaterialPageRoute(builder: (context) => LoginView()),
+                (route) => false,
               );
-
             },
             onBackPressed: () {
               Navigator.pop(context);

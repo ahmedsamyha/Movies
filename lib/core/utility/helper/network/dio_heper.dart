@@ -33,7 +33,7 @@ class ApiService {
     );
     return response.data;
   }
-//*******************************************************************************
+
   Future<Map<String, dynamic>> getProfile(
       {required String endPoint, required String token}) async {
     try {
@@ -55,65 +55,4 @@ class ApiService {
       }
     }
   }
-//**************************************************************************
-  Future<Map<String, dynamic>> getFavorites(
-      {required String endPoint, required String token}) async {
-    try {
-      Response response = await dio.get(
-        '$_baseUrl/$endPoint',
-        options: Options(
-          headers: {
-            'Authorization': "Bearer $token",
-            'Content-Type': 'application/json',
-          },
-        ),
-      );
-      return response.data;
-    } catch (e) {
-      if (e is DioException) {
-        throw e.response?.data ?? 'Error fetching Favorites';
-      } else {
-        throw e.toString();
-      }
-    }
-  }
-
-
-//*************************************
-  Future<Map<String, dynamic>> postFavorites({
-    required String endPoint,
-    required String token,
-    required dynamic data,
-  }) async {
-    var response = await dio.post(
-      '$_baseUrl$endPoint',
-      data: data,
-      options: Options(
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': "Bearer $token",
-        },
-      ),
-    );
-    return response.data;
-  }
-
-
-
-  Future<Map<String, dynamic>> deleteFavorites({
-    required String endPoint,
-    required String token,
-  }) async {
-    var response = await dio.delete(
-      '$_baseUrl$endPoint',
-      options: Options(
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': "Bearer $token",
-        },
-      ),
-    );
-    return response.data;
-  }
-
 }
