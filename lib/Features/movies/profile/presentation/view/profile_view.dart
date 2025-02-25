@@ -86,7 +86,7 @@ class _ProfileViewState extends State<ProfileView> {
                                 ),
                                 Column(
                                   children: [
-                                    Text('12',
+                                    Text('${BlocProvider.of<FavoritesCubit>(context).faveMoviesList.length}',
                                         style: KStyles.roboto20w700White),
                                     const SizedBox(height: 10),
                                     Text('Wish List',

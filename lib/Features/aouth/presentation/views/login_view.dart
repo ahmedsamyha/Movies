@@ -46,8 +46,8 @@ class _LoginViewState extends State<LoginView> {
             color: AppColors.kPrimaryColor,
           ));
         } else if (state is LoginSuccessState) {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => AppMainView()));
+          Navigator.pushAndRemoveUntil(
+              context, MaterialPageRoute(builder: (context) => AppMainView()),(route) => false,);
         } else if (state is LoginFailureState) {
           AwesomeDialog(
             btnCancelColor: const Color(0xfff44369),
