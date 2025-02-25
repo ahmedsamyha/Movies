@@ -15,6 +15,8 @@ import 'package:movies/core/utility/constants/colors.dart';
 import 'package:movies/core/utility/constants/images.dart';
 import 'package:movies/core/utility/theme_data/custom_theme/text_theme.dart';
 
+import '../../data/data_source/firebase/firebase_google.dart';
+
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
 
@@ -219,7 +221,9 @@ class _LoginViewState extends State<LoginView> {
                     SizedBox(
                         width: double.infinity,
                         child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              signInWithGoogle();
+                            },
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [

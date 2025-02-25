@@ -15,9 +15,15 @@ class _SplashViewState extends State<SplashView> {
     Future.delayed(const Duration(seconds: 2), () {
       Navigator.pushAndRemoveUntil(
         context,
-        MaterialPageRoute(builder: (context) => ExploreView()),
+        PageRouteBuilder(
+          pageBuilder: (context, animation, secondaryAnimation) => ExploreView(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return FadeTransition(opacity: animation, child: child);
+          },
+        ),
         (route) => false,
       );
+
     });
     super.initState();
   }
