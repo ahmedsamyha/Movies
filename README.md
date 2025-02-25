@@ -2,6 +2,13 @@
 
 A modern, feature-rich movie app built with Flutter, designed to provide users with an immersive experience for browsing, discovering, and managing their favorite movies.
 
+
+## 🚀 Group (Sun & Wed) 
+
+## Ahmed Samy Hashim
+
+## Ahmed Hassan Mohamned 
+
 ## ✨ Features
 
 ✔ Browse Movies – Explore the latest, trending, and top-rated movies.
