@@ -7,6 +7,7 @@ class CustomTextFormField extends StatelessWidget {
       {super.key,
        this.prefixIcon,
        this.hint,
+        this.onPressed,
       required this.controller,
       required this.validator,
        this.onChanged,
@@ -15,6 +16,7 @@ class CustomTextFormField extends StatelessWidget {
          this.label, required this.obscureText});
    IconData? prefixIcon;
   IconData? suffixIcon;
+   void Function()? onPressed;
   String? label;
    String? hint;
   final TextEditingController controller;
@@ -26,7 +28,6 @@ class CustomTextFormField extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return TextFormField(
-
       style: KStyles.roboto16w400White,
       decoration: InputDecoration(
         fillColor: Color(0xFF282A28),
@@ -34,7 +35,7 @@ class CustomTextFormField extends StatelessWidget {
         border: OutlineInputBorder(
         ),
         prefixIcon: prefixIcon != null ? Icon(prefixIcon) : null,
-        suffixIcon: Icon(suffixIcon),
+        suffixIcon: IconButton(onPressed:onPressed , icon: Icon(suffixIcon)),
         labelText: label,
         hintText: hint,
         alignLabelWithHint: true,

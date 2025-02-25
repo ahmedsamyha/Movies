@@ -21,11 +21,12 @@ class _ShowButtomSheetState extends State<ShowButtomSheet> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: EdgeInsets.symmetric(horizontal: 16,vertical: 16),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(32),
         color: AppColors.grayBackground,
       ),
-      height: MediaQuery.of(context).size.height * .48,
+      height: MediaQuery.of(context).size.height * .45,
       child: GridView.builder(
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 3,
@@ -47,7 +48,7 @@ class _ShowButtomSheetState extends State<ShowButtomSheet> {
                     : AppColors.darkBackground,
                 border: Border.all(color: AppColors.kPrimaryColor),
               ),
-              child: Image.asset('assets/images/avatar${index + 1}.png'),
+              child: Image.asset('assets/images/avatar${index + 1}.png' ),
             ),
           );
         },

@@ -11,6 +11,8 @@ import 'Features/aouth/data/data_source/register_cubit/register_cubit.dart';
 import 'Features/aouth/data/data_source/register_cubit/register_state.dart';
 import 'Features/movies/app_main/data/data_source/app_main_cubit/app_main_cubit.dart';
 import 'Features/movies/app_main/data/data_source/app_main_cubit/app_main_state.dart';
+import 'Features/movies/profile/data/data_source/favorites_cubit/favorites_cubit.dart';
+import 'Features/movies/profile/data/data_source/favorites_cubit/favorites_states.dart';
 import 'core/utility/helper/network/dio_heper.dart';
 import 'core/utility/theme_data/app_theme.dart';
 
@@ -48,6 +50,7 @@ class MoviesApp extends StatelessWidget {
           create: (context) =>
               LoginCubit(LoginInitialState(), ApiService(dio: Dio())),
         ),
+        BlocProvider(create: (context) => FavoritesCubit(FavoritesInitialState(), ApiService(dio: Dio()))),
 
       ],
       child: MaterialApp(

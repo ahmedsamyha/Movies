@@ -13,9 +13,7 @@ import 'package:movies/Features/movies/app_main/presentation/app_main.dart';
 
 import 'package:movies/core/utility/constants/colors.dart';
 import 'package:movies/core/utility/constants/images.dart';
-import 'package:movies/core/utility/constants/text_constants.dart';
 import 'package:movies/core/utility/theme_data/custom_theme/text_theme.dart';
-
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -29,6 +27,10 @@ class _LoginViewState extends State<LoginView> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final formKey = GlobalKey<FormState>();
+  late bool showPassword = true;
+  void passwordState() {
+    showPassword = !showPassword;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,6 +61,12 @@ class _LoginViewState extends State<LoginView> {
         }
       },
       builder: (context, state) {
+        if (state is LoginLoadingState) {
+          Center(
+              child: CircularProgressIndicator(
+                color: AppColors.kPrimaryColor,
+              ));
+        }
         return Scaffold(
           body: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -103,7 +111,14 @@ class _LoginViewState extends State<LoginView> {
                     ),
                     CustomTextFormField(
                         prefixIcon: Icons.lock,
-                        suffixIcon: Icons.remove_red_eye_rounded,
+                        suffixIcon: showPassword
+                            ? Icons.remove_red_eye_rounded
+                            : Icons.remove_red_eye_outlined,
+                        onPressed: () {
+                          setState(() {
+                            passwordState();
+                          });
+                        },
                         label: "password".tr(),
                         controller: passwordController,
                         validator: (value) {
@@ -113,7 +128,7 @@ class _LoginViewState extends State<LoginView> {
                           return null;
                         },
                         keyboardType: TextInputType.visiblePassword,
-                        obscureText: true),
+                        obscureText: showPassword),
                     Align(
                       alignment: Alignment.centerRight,
                       child: TextButton(
@@ -140,6 +155,7 @@ class _LoginViewState extends State<LoginView> {
                                     email: emailController.text,
                                     password: passwordController.text);
                               }
+
                             },
                             child: Text(
                               "login".tr(),

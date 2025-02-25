@@ -13,34 +13,24 @@ class AvailableNowShimmer extends StatelessWidget {
     return Container(
       height: height * .67,
       width: double.infinity,
-      decoration: BoxDecoration(
-        color: AppColors.grayBackground,
-      ),
       child: Stack(
         children: [
+          Positioned.fill(
+              child: Image.asset(KImages.logo)
+          ),
           Positioned(
-              top: 38,
+              top: 37,
               left: width * .15,
               child: Image.asset(KImages.availabel)),
-         /* Positioned.fill(
-            child: Shimmer.fromColors(
-              baseColor: Colors.white.withValues(alpha: 0.2),
-              highlightColor: Colors.white.withValues(alpha: 0.3),
-              child: Container(
-                color: AppColors.grayBackground,
-              ),
-            ),
-          ),*/
           Padding(
-            padding: EdgeInsets.only(top: height * .15,left: width*.24 ,right: width*.24),
+            padding: EdgeInsets.only(top: height * .18,left: width*.24 ,right: width*.24),
             child: SizedBox(
               height: height * .33,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(16),
-
                 child: Shimmer.fromColors(
-                  baseColor: Colors.white.withValues(alpha: 0.2),
-                  highlightColor: Colors.white.withValues(alpha: 0.3),
+                  baseColor: Colors.white.withValues(alpha: 0.01),
+                  highlightColor: Colors.white.withValues(alpha: 0.1),
                   child: Container(
                     decoration: BoxDecoration(
                       color: AppColors.darkBackground,

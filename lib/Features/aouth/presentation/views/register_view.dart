@@ -11,7 +11,6 @@ import 'package:movies/core/utility/constants/colors.dart';
 import 'package:movies/core/utility/constants/images.dart';
 import 'package:movies/core/utility/theme_data/custom_theme/text_theme.dart';
 
-
 class RegisterView extends StatefulWidget {
   const RegisterView({super.key});
 
@@ -39,6 +38,10 @@ class _RegisterViewState extends State<RegisterView> {
     KImages.avatar8,
     KImages.avatar9,
   ];
+  late bool showPassword = true;
+  void passwordState() {
+    showPassword = !showPassword;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -186,7 +189,9 @@ class _RegisterViewState extends State<RegisterView> {
                     SizedBox(height: 24),
                     CustomTextFormField(
                       prefixIcon: Icons.lock,
-                      suffixIcon: Icons.remove_red_eye_rounded,
+                      suffixIcon: showPassword
+                          ? Icons.remove_red_eye_rounded
+                          : Icons.remove_red_eye_outlined,
                       label: "password".tr(),
                       controller: passwordController,
                       validator: (value) {
@@ -197,13 +202,20 @@ class _RegisterViewState extends State<RegisterView> {
                         }
                         return null;
                       },
+                      onPressed: () {
+                        setState(() {
+                          passwordState();
+
+                        });                      },
                       keyboardType: TextInputType.visiblePassword,
-                      obscureText: true,
+                      obscureText: showPassword,
                     ),
                     SizedBox(height: 24),
                     CustomTextFormField(
                       prefixIcon: Icons.lock,
-                      suffixIcon: Icons.remove_red_eye_rounded,
+                      suffixIcon: showPassword
+                          ? Icons.remove_red_eye_rounded
+                          : Icons.remove_red_eye_outlined,
                       label: "confirm_password".tr(),
                       controller: confirmPasswordController,
                       validator: (value) {
@@ -215,7 +227,12 @@ class _RegisterViewState extends State<RegisterView> {
                         return null;
                       },
                       keyboardType: TextInputType.visiblePassword,
-                      obscureText: true,
+                      obscureText: showPassword,
+                      onPressed: () {
+                        setState(() {
+                          passwordState();
+
+                        });                      },
                     ),
                     SizedBox(height: 24),
                     CustomTextFormField(
