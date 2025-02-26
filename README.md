@@ -42,11 +42,11 @@ Firebase Auth – Google Sign-In authentication
 
 Dio – API integration & HTTP requests
 
-GetX – State management & navigation
+Bloc – State management & navigation
 
 EasyLocalization – Multi-language support
 
-Hive/Sqflite – Local database for favorites
+Shared Preference – Local database
 
 ## ▶️ App Preview
 You can watch the project video by clicking on the following link
